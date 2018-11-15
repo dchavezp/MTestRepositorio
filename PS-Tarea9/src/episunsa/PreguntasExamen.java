@@ -42,7 +42,7 @@ public class PreguntasExamen {
 		System.out.println("Ingrese Respuestas de Preguntas");
 		s = new Scanner(System.in);
 		do {
-			if (np % 50 == 0) {
+			if (np % 50 == 0 && np!=0) {
 				String val = s.nextLine();
 				if (val.length() == 50 && !val.contains(" ")) {
 					this.preguntas.add(val);
@@ -61,7 +61,7 @@ public class PreguntasExamen {
 					System.out.println("Error al ingresar cadena!");
 				}
 			}
-		} while (ti > 0);
+		} while (ti > 0 && np > 0);
 	}
 
 	@Override

@@ -22,6 +22,7 @@ public class RespuestaEstudiante {
 		assert pe.getNumP() < 999 && pe.getNumP() > 0;
 		assert numE < 999 && numE > 0;
 		this.estd = new ArrayList<>();
+		this.respEstudiante = new ArrayList<>();
 		this.idEstudiante = new ArrayList<>();
 		this.numP = pe.getNumP();
 		this.numE = numE;
@@ -30,6 +31,7 @@ public class RespuestaEstudiante {
 
 	public void setEstudiantesRespuestas() {
 		String idE;
+		String val;
 		assert this.numreg != 0;
 		int tiPorEstudiante = this.numreg / 2;
 		int np = this.numP;
@@ -42,9 +44,11 @@ public class RespuestaEstudiante {
 				idEstudiante.add(idE);
 				estd.add(new Estudiante(idE));
 				do {
+					System.out.println("Ingrese Cadena de Respuesta a Preguntas");
 					if (np % 50 == 0) {
-						String val = s.nextLine();
+						val = s.nextLine();
 						if (val.length() == 50 && !val.contains(" ")) {
+							this.estd.add(new Estudiante(val));
 							this.respEstudiante.add(val);
 							tiPorEstudiante--;
 							np = np - 50;
@@ -52,8 +56,9 @@ public class RespuestaEstudiante {
 							System.out.println("Error al ingresar cadena!");
 						}
 					} else {
-						String val = s.nextLine();
+						val = s.nextLine();
 						if ((val.length() == np % 50 || val.length() == 50) && !val.contains(" ")) {
+							this.estd.add(new Estudiante(val));
 							this.respEstudiante.add(val);
 							tiPorEstudiante--;
 							np = np - val.length();
@@ -61,12 +66,12 @@ public class RespuestaEstudiante {
 							System.out.println("Error al ingresar cadena!");
 						}
 					}
-				} while (tiPorEstudiante > 0);
+				} while (tiPorEstudiante > 0 && np>0);
 				te--;
 			} else {
 				System.out.println("Error al Ingresar codigo!");
 			}
-		} while (te >= 0);
+		} while (te >0);
 	}
 
 	@Override
