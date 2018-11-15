@@ -47,8 +47,7 @@ public class RespuestaEstudiante {
 					System.out.println("Ingrese Cadena de Respuesta a Preguntas");
 					if (np % 50 == 0) {
 						val = s.nextLine();
-						if (val.length() == 50 && !val.contains(" ")) {
-							this.estd.add(new Estudiante(val));
+						if (val.length() == 50) {
 							this.respEstudiante.add(val);
 							tiPorEstudiante--;
 							np = np - 50;
@@ -57,8 +56,7 @@ public class RespuestaEstudiante {
 						}
 					} else {
 						val = s.nextLine();
-						if ((val.length() == np % 50 || val.length() == 50) && !val.contains(" ")) {
-							this.estd.add(new Estudiante(val));
+						if ((val.length() == np % 50 || val.length() == 50)) {
 							this.respEstudiante.add(val);
 							tiPorEstudiante--;
 							np = np - val.length();
@@ -83,15 +81,15 @@ public class RespuestaEstudiante {
 		String resp = "";
 		for (int i = 0; i < te; i++) {
 			if (np < 51) {
-				resp = resp + this.idEstudiante.get(i) + this.respEstudiante.get(i) + c6079 + RespuestaEstudiante.id
+				resp = resp + this.idEstudiante.get(i)+"/" + this.respEstudiante.get(0) + c6079 + RespuestaEstudiante.id
 						+ "\n";
 			} else {
-				resp = resp + this.idEstudiante.get(i) + this.respEstudiante.get(i*tiPorEstudiante) + c6079 + RespuestaEstudiante.id
+				resp = resp + this.idEstudiante.get(i)+"/" + this.respEstudiante.get(i*tiPorEstudiante) + c6079 + RespuestaEstudiante.id
 						+ "\n";
 				for (int j = 0; j < tiPorEstudiante; j++) {
 					if(i==i*tiPorEstudiante)
 						continue;
-					resp = resp + "---------" + this.respEstudiante.get(i*tiPorEstudiante) + c6079 + RespuestaEstudiante.id
+					resp = resp + "---------"+"/"+ this.respEstudiante.get(i*tiPorEstudiante) + c6079 + RespuestaEstudiante.id
 							+ "\n";
 				}
 			}
@@ -106,5 +104,8 @@ public class RespuestaEstudiante {
 
 	public ArrayList<Estudiante> listEstudiantes() {
 		return estd;
+	}
+	public ArrayList<String> listR(){
+		return this.respEstudiante;
 	}
 }

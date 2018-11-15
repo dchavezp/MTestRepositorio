@@ -84,5 +84,9 @@ public class PreguntasExamen {
 	public int getNumR() {
 		return this.numreg;
 	}
+	
+	public ArrayList<String> listR(){
+		return this.preguntas;
+	}
 
 }
