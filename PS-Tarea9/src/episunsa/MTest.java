@@ -214,7 +214,7 @@ public class MTest {
 	}
 
 	public int setCalificacion(String re, String rp) {
-		assert this.re.listEstudiantes()!=null;
+		assert this.re.listEstudiantes() != null;
 		int total = 0;
 		int cal;
 		char[] resp = rp.toCharArray();
@@ -223,7 +223,7 @@ public class MTest {
 			if (resp[i] == respE[i])
 				total++;
 		}
-		cal=(total*10)/numPrg;
+		cal = (total * 10) / numPrg;
 		return cal;
 	}
 	public ArrayList<Estudiante> getCal(){

@@ -18,6 +18,13 @@ public class RespuestaEstudiante {
 		estd = new ArrayList<>();
 	}
 
+	public void setNumreg(int nump) {
+		assert nump!=0;
+		if(nump%50==0)
+			this.numreg=nump/50;
+		this.numreg = (nump/50)+1;
+	}
+
 	public RespuestaEstudiante(PreguntasExamen pe, int numE) {
 		assert pe.getNumP() < 999 && pe.getNumP() > 0;
 		assert numE < 999 && numE > 0;
@@ -26,7 +33,7 @@ public class RespuestaEstudiante {
 		this.idEstudiante = new ArrayList<>();
 		this.numP = pe.getNumP();
 		this.numE = numE;
-		this.numreg = 2 * pe.getNumR();
+		setNumreg(numP);
 	}
 
 	public void setEstudiantesRespuestas() {
@@ -114,7 +121,15 @@ public class RespuestaEstudiante {
 	public ArrayList<Estudiante> listEstudiantes() {
 		return estd;
 	}
-
+	public void setNumPreguntas(int nup) {
+		assert nup != 0;
+		if (nup <= 0 || nup >= 1000) {
+			System.err.println("Error al Establecer numero de preguntas!");
+		} else {
+			this.numP = nup;
+		}
+	}
+	
 	public ArrayList<String> listR() {
 		return this.respEstudiante;
 	}

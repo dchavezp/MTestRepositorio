@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import episunsa.Estudiante;
 import episunsa.MTest;
+import episunsa.PreguntasExamen;
 import episunsa.RespuestaEstudiante;
 
 public class MTestTest {
@@ -130,14 +131,15 @@ public class MTestTest {
 	
 	@Test
 	public void casoPrueba18() { // 1 solo registro de respuestas pero 2 respuestas
-		RespuestaEstudiante registro = new RespuestaEstudiante();
-		ArrayList<String> preguntas = new ArrayList<String>();
+		
+		PreguntasExamen pe=new PreguntasExamen(1);
+		ArrayList<String> respEs = new ArrayList<String>();
 		ArrayList<Estudiante> estudiante = new ArrayList<Estudiante>();
-		preguntas.add("a");
 		estudiante.add(new Estudiante());
-		registro.setEstudiantesRespuestas(preguntas, estudiante);
+		RespuestaEstudiante registro = new RespuestaEstudiante(pe,estudiante.size());
+		registro.setEstudiantesRespuestas(respEs, estudiante);
 		System.out.println(registro.getNumR());
-		assertTrue(preguntas.size() == registro.getNumR() * estudiante.size());
+		assertTrue(registro.getNumR() == registro.getNumR() * estudiante.size());
 		
 	//********************************************
 	}
