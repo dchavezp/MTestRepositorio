@@ -16,6 +16,9 @@ import episunsa.RespuestaEstudiante;
 
 public class MTestTest {
 	MTest test;
+	Estudiante estudiante;
+	RespuestaEstudiante testRe;
+	PreguntasExamen preguntasExa;
 	@Before
 	public void inicializar() {
 		test = new MTest();
@@ -98,7 +101,7 @@ public class MTestTest {
 	}
 	
 	@Test
-	public void casoPrueba11() { // Respuesta correcta no hay 	*****************************
+	public void casoPrueba11() {
 		test.setTitulo("a");
 		fail("Error al Establecer numero de preguntas!"); 
 	}
@@ -138,10 +141,46 @@ public class MTestTest {
 		estudiante.add(new Estudiante());
 		RespuestaEstudiante registro = new RespuestaEstudiante(pe,estudiante.size());
 		registro.setEstudiantesRespuestas(respEs, estudiante);
-		System.out.println(registro.getNumR());
 		assertTrue(registro.getNumR() == registro.getNumR() * estudiante.size());
-		
-	//********************************************
+	}
+	
+	@Test
+	void casoprueba26() {
+		estudiante = new Estudiante("a");
+		assertEquals(0, estudiante.getCal());	
+	}
+	
+	@Test
+	void casoprueba27() {
+		estudiante = new Estudiante("a");
+		int aa=10;
+		estudiante.setCal(aa);
+		assertEquals(10, estudiante.getCal());
+	}
+	
+	@Test
+	void casoprueba28() {
+	  test = new MTest();
+	  test.setNumEstd(3);
+	  testRe =new RespuestaEstudiante();
+	 // testRe.setEstudiantesRespuestas(); 
+	  //test.reporteCalificacionesEstudiantes();
+	}
+	
+	@Test
+	void casoprueba29() {
+		estudiante = new Estudiante();
+		estudiante.setId("999999999");
+		assertEquals("999999999",estudiante.getId());   		
+	}
+	
+	void casoprueba32() {
+		preguntasExa = new PreguntasExamen();
+		preguntasExa.setNumP(3);		
+	}
+	
+	void prueba36() {
+		System.out.println("todos los estudiantes cntestan la pregunta 1 correctmente");	
 	}
 	
 	@After
