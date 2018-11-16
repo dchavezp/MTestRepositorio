@@ -15,8 +15,8 @@ public class MTest {
 	private int numEst=0;
 	private int numPrg=0;
 	public MTest() {
-		this.pe=new PreguntasExamen(this.numPrg);
-		this.re=new RespuestaEstudiante(this.pe,this.numEst);
+		System.out.println("-------------MTEST---------------");
+		System.out.println("-------------Bienvenido---------------");
 		this.mediana=0.0;
 		this.varianza=0.0;
 		this.titulo="";
@@ -50,12 +50,39 @@ public class MTest {
 		return numEstd;
 	}
 	public void setNumEstd() {
+		s=new Scanner(System.in);
+		int ne;
 		while(numEst==0) {
-			
+			System.out.println("Ingrese numero de estudiantes");
+			ne=s.nextInt();
+			assert ne>=0;
+			if(ne<=0||ne>=200) {
+				System.out.println("Error al Establecer numero de estudiantes ingrese de nuevo!");
+			}
+			else {
+				this.numEst=ne;
+				break;
+			}
 		}
-		this.numEstd = numEstd;
+		s=null;
 	}
-
+	public void setNumPreguntas() {
+		s=new Scanner(System.in);
+		int nup;
+		while(this.numPrg==0) {
+			System.out.println("Ingrese numero de preguntas");
+			nup=s.nextInt();
+			assert nup>=0;
+			if(nup<=0||nup>=1000) {
+				System.out.println("Error al Establecer numero de preguntas ingrese de nuevo!");
+			}
+			else {
+				this.numPrg=nup;
+				break;
+			}
+		}
+		s=null;
+	}
 	public double getMediana() {
 		return mediana;
 	}
@@ -69,6 +96,10 @@ public class MTest {
 		this.varianza = varianza;
 	}
 	public void iniciar() {
+		this.setNumPreguntas();
+		this.setNumEstd();
+		this.pe=new PreguntasExamen(this.numPrg);
+		this.re=new RespuestaEstudiante(this.pe,this.numEst);
 		System.out.println("Ingrese titulo: ");
 		this.setTitulo();
 		System.out.println("Registros de Resolución de Preguntas ");
@@ -81,7 +112,7 @@ public class MTest {
 	}
 	private void calificacionEstudiantes(ArrayList<Estudiante> le) {
 		for (int i = 0; i < le.size(); i++) {
-			for (int j = i*pe.getNumR(); j < i+pe.getNumR(); j++) {
+			for (int j = i*pe.getNumR(); j < i+(pe.getNumR()-1); j++) {
 				le.get(i).setCal(setCalificacion(this.pe.getPreguntas().get(i%pe.getNumR()), this.re.listR().get(j)));
 			}
 			
@@ -89,7 +120,7 @@ public class MTest {
 	}
 	public void reporteCalificacionesEstudiantes() {
 		ArrayList<Estudiante> lt=re.listEstudiantes();
-		for (Iterator iterator = lt.iterator(); iterator.hasNext();) {
+		for (Iterator<Estudiante> iterator = lt.iterator(); iterator.hasNext();) {
 			Estudiante estudiante = (Estudiante) iterator.next();
 			System.out.println("Id: "+estudiante.getId()+" Calificación: "+estudiante.getCal());
 		}

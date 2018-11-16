@@ -56,7 +56,7 @@ public class RespuestaEstudiante {
 						}
 					} else {
 						val = s.nextLine();
-						if ((val.length() == np % 50 || val.length() == 50)) {
+						if ((val.length() == (np % 50) || val.length() <= 50)) {
 							this.respEstudiante.add(val);
 							tiPorEstudiante--;
 							np = np - val.length();
