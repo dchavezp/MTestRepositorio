@@ -46,7 +46,7 @@ public class RespuestaEstudiante {
 				do {
 					System.out.println("Ingrese Cadena de Respuesta a Preguntas");
 					val = s.nextLine();
-					if (val.length() <= 50 && val.length() >=0) {
+					if (val.length() <= 50 && val.length() >= 0) {
 						this.respEstudiante.add(val);
 						tiPorEstudiante--;
 						np = np - val.length();
@@ -55,24 +55,32 @@ public class RespuestaEstudiante {
 					}
 				} while (tiPorEstudiante > 0 && np > 0);
 				te--;
-				tiPorEstudiante=this.numreg / 2;
+				tiPorEstudiante = this.numreg / 2;
 			} else {
 				System.out.println("Error al Ingresar codigo!");
 			}
 		} while (te > 0);
 	}
-	public void setEstudiantesRespuestas(ArrayList<String> er) {
-		int numErr=0;
-		for(int i=0;i<er.size();i++) {
-			if(er.get(i).length()>50 || er.get(i).length()==0) {
-				System.err.println("Error en la cadena "+ i+ " ingresada");
-				numErr++;
+
+	public void setEstudiantesRespuestas(ArrayList<String> er, ArrayList<Estudiante> es) {
+		int numErr = 0;
+		if (es.size() > 0 && es.size() < 201) {
+			for (int i = 0; i < er.size(); i++) {
+				if (er.get(i).length() > 50 || er.get(i).length() == 0) {
+					System.err.println("Error en la cadena " + i + " ingresada");
+					numErr++;
+				}
+			}
+			if (numErr == 0) {
+				this.respEstudiante = er;
+				this.estd = es;
 			}
 		}
-		if(numErr==0)
-			this.respEstudiante=er;
-		this.respEstudiante=null;
+		this.respEstudiante = null;
+		this.estd = null;
+
 	}
+
 	@Override
 	public String toString() {
 		int tiPorEstudiante = this.numreg / 2;

@@ -12,7 +12,6 @@ public class MTest {
 	private double media;
 	private double mediana;
 	private double varianza;
-	private int numEstd;
 	private Scanner s;
 	private int numEst = 0;
 	private int numPrg = 0;
@@ -46,7 +45,7 @@ public class MTest {
 			tit = s.nextLine();
 			assert titulo.length() == 0;
 			if (tit.length() < 81 && tit.length() <= 0) {
-				System.out.println("Error al Establecer título ingrese de nuevo!");
+				System.out.println("Error al Establecer titulo ingrese de nuevo!");
 			} else {
 				this.titulo = tit;
 				break;
@@ -54,15 +53,15 @@ public class MTest {
 		}
 	}
 	public void setTitulo(String tit) {
-		assert titulo.length() != 0;
+//		assert titulo.length() != 0;
 		if (tit.length() < 81 && tit.length() <= 0) {
-			System.err.println("Error al Establecer título ingrese de nuevo!");
+			System.err.println("Error al Establecer titulo ingrese de nuevo!");
 		} else {
 			this.titulo = tit;
 		}
 	}
 	public int getNumEstd() {
-		return numEstd;
+		return numEst;
 	}
 
 	public void setNumEstd() {
@@ -83,7 +82,7 @@ public class MTest {
 	}
 	public void setNumEstd(int ne) {
 		assert ne != 0;
-		if (ne <= 0 || ne >= 200) {
+		if (ne <= 0 || ne > 200) {
 			System.err.println("Error al Establecer numero de estudiantes!");
 		} else {
 			this.numEst = ne;
@@ -91,19 +90,27 @@ public class MTest {
 	}
 	public void setNumPreguntas() {
 		s = new Scanner(System.in);
-		int nup;
-		while (this.numPrg == 0) {
-			System.out.println("Ingrese numero de preguntas");
-			nup = s.nextInt();
-			assert nup >= 0;
-			if (nup <= 0 || nup >= 1000) {
-				System.out.println("Error al Establecer numero de preguntas ingrese de nuevo!");
-			} else {
-				this.numPrg = nup;
-				break;
+		try {
+			int nup;
+			while (this.numPrg == 0) {
+				System.out.println("Ingrese numero de preguntas");
+				nup = s.nextInt();
+				assert nup >= 0;
+				if (nup <= 0 || nup >= 1000) {
+					System.out.println("Error al Establecer numero de preguntas ingrese de nuevo!");
+				} else {
+					this.numPrg = nup;
+					break;
+				}
 			}
+			s = null;
 		}
-		s = null;
+		catch(Exception e){
+			 System.out.print("Type a Number, Not String");
+		}
+	}
+	public int getNumPreguntas() {
+		return numPrg;
 	}
 	public void setNumPreguntas(int nup) {
 		assert nup != 0;
@@ -151,7 +158,7 @@ public class MTest {
 		this.re = new RespuestaEstudiante(this.pe, this.numEst);
 		System.out.println("Ingrese titulo: ");
 		this.setTitulo();
-		System.out.println("Registros de Resolución de Preguntas ");
+		System.out.println("Registros de Resolucion de Preguntas ");
 		pe.setPreguntas();
 		System.out.println(pe.toString());
 		System.out.println("Registros de Respuestas de Estudiantes ");
