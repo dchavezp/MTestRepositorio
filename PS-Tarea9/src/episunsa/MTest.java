@@ -112,11 +112,11 @@ public class MTest {
 	}
 	private void calificacionEstudiantes(ArrayList<Estudiante> le) {
 		for (int i = 0; i < le.size(); i++) {
-			for (int j = i*pe.getNumR(); j < i+(pe.getNumR()-1); j++) {
+			for (int j = i*pe.getNumR(); j < i+(pe.getNumR()); j++) {
 				le.get(i).setCal(setCalificacion(this.pe.getPreguntas().get(i%pe.getNumR()), this.re.listR().get(j)));
 			}
-			
 		}
+		this.re.setListEst(le);
 	}
 	public void reporteCalificacionesEstudiantes() {
 		ArrayList<Estudiante> lt=re.listEstudiantes();

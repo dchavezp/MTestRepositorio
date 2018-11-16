@@ -36,7 +36,7 @@ public class RespuestaEstudiante {
 		int tiPorEstudiante = this.numreg / 2;
 		int np = this.numP;
 		int te = this.numE;
-		s=new Scanner(System.in);
+		s = new Scanner(System.in);
 		do {
 			System.out.println("Ingrese codigo Estudiante: ");
 			idE = s.nextLine();
@@ -45,31 +45,21 @@ public class RespuestaEstudiante {
 				estd.add(new Estudiante(idE));
 				do {
 					System.out.println("Ingrese Cadena de Respuesta a Preguntas");
-					if (np % 50 == 0) {
-						val = s.nextLine();
-						if (val.length() == 50) {
-							this.respEstudiante.add(val);
-							tiPorEstudiante--;
-							np = np - 50;
-						} else {
-							System.out.println("Error al ingresar cadena!");
-						}
+					val = s.nextLine();
+					if (val.length() <= 50 && val.length() >=0) {
+						this.respEstudiante.add(val);
+						tiPorEstudiante--;
+						np = np - val.length();
 					} else {
-						val = s.nextLine();
-						if ((val.length() == (np % 50) || val.length() <= 50)) {
-							this.respEstudiante.add(val);
-							tiPorEstudiante--;
-							np = np - val.length();
-						} else {
-							System.out.println("Error al ingresar cadena!");
-						}
+						System.out.println("Error al ingresar cadena!");
 					}
-				} while (tiPorEstudiante > 0 && np>0);
+				} while (tiPorEstudiante > 0 && np > 0);
 				te--;
+				tiPorEstudiante=this.numreg / 2;
 			} else {
 				System.out.println("Error al Ingresar codigo!");
 			}
-		} while (te >0);
+		} while (te > 0);
 	}
 
 	@Override
@@ -81,15 +71,15 @@ public class RespuestaEstudiante {
 		String resp = "";
 		for (int i = 0; i < te; i++) {
 			if (np < 51) {
-				resp = resp + this.idEstudiante.get(i)+"/" + this.respEstudiante.get(0) + c6079 + RespuestaEstudiante.id
-						+ "\n";
+				resp = resp + this.idEstudiante.get(i) + "/" + this.respEstudiante.get(i) + c6079
+						+ RespuestaEstudiante.id + "\n";
 			} else {
-				resp = resp + this.idEstudiante.get(i)+"/" + this.respEstudiante.get(i*tiPorEstudiante) + c6079 + RespuestaEstudiante.id
-						+ "\n";
+				resp = resp + this.idEstudiante.get(i) + "/" + this.respEstudiante.get(i * tiPorEstudiante) + c6079
+						+ RespuestaEstudiante.id + "\n";
 				for (int j = 0; j < tiPorEstudiante; j++) {
-					if(i==i*tiPorEstudiante)
+					if (i == i * tiPorEstudiante)
 						continue;
-					resp = resp + "---------"+"/"+ this.respEstudiante.get(i*tiPorEstudiante) + c6079 + RespuestaEstudiante.id
+					resp = resp + "---------" + "/" + this.respEstudiante.get(j) + c6079 + RespuestaEstudiante.id
 							+ "\n";
 				}
 			}
@@ -105,7 +95,12 @@ public class RespuestaEstudiante {
 	public ArrayList<Estudiante> listEstudiantes() {
 		return estd;
 	}
-	public ArrayList<String> listR(){
+
+	public ArrayList<String> listR() {
 		return this.respEstudiante;
+	}
+
+	public void setListEst(ArrayList<Estudiante> le) {
+		this.estd = le;
 	}
 }

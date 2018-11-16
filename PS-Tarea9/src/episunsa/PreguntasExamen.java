@@ -42,24 +42,13 @@ public class PreguntasExamen {
 		System.out.println("Ingrese Respuestas de Preguntas");
 		s = new Scanner(System.in);
 		do {
-			if (np % 50 == 0 && np!=0) {
-				String val = s.nextLine();
-				if (val.length() == 50 && !val.contains(" ")) {
-					this.preguntas.add(val);
-					ti--;
-					np = np - 50;
-				} else {
-					System.out.println("Error al ingresar cadena!");
-				}
+			String val = s.nextLine();
+			if ((val.length() == np % 50 || val.length() == 50) && !val.contains(" ") && val.length()!=0) {
+				this.preguntas.add(val);
+				ti--;
+				np = np - val.length();
 			} else {
-				String val = s.nextLine();
-				if ((val.length() == np % 50 || val.length() == 50) && !val.contains(" ")) {
-					this.preguntas.add(val);
-					ti--;
-					np = np - val.length();
-				} else {
-					System.out.println("Error al ingresar cadena!");
-				}
+				System.out.println("Error al ingresar cadena!");
 			}
 		} while (ti > 0 && np > 0);
 	}
@@ -74,7 +63,7 @@ public class PreguntasExamen {
 			return this.numP + c49 + this.preguntas.get(0) + c6079 + PreguntasExamen.id;
 		} else {
 			String reg = this.numP + c49 + this.preguntas.get(0) + c6079 + PreguntasExamen.id + "\n";
-			for (int i = 1; i<ni ; i++) {
+			for (int i = 1; i < ni; i++) {
 				reg = reg + "---" + c49 + this.preguntas.get(i) + c6079 + PreguntasExamen.id + "\n";
 			}
 			return reg;
@@ -84,8 +73,8 @@ public class PreguntasExamen {
 	public int getNumR() {
 		return this.numreg;
 	}
-	
-	public ArrayList<String> listR(){
+
+	public ArrayList<String> listR() {
 		return this.preguntas;
 	}
 
