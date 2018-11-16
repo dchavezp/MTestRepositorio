@@ -15,13 +15,18 @@ public class Estudiante {
 		return id;
 	}
 	public void setId(String id) {
-		this.id = id;
+		if(id.length()<=9&&id.length()>=0)
+			this.id = id;
+		System.err.println("Error al ingresar id");
+		
 	}
 	public int getCal() {
 		return cal;
 	}
 	public void setCal(int cal) {
+		assert cal>=0 && cal<=10;
 		this.cal = cal;
+		
 	}
 
 

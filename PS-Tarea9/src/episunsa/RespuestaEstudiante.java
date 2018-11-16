@@ -61,7 +61,18 @@ public class RespuestaEstudiante {
 			}
 		} while (te > 0);
 	}
-
+	public void setEstudiantesRespuestas(ArrayList<String> er) {
+		int numErr=0;
+		for(int i=0;i<er.size();i++) {
+			if(er.get(i).length()>50 || er.get(i).length()==0) {
+				System.err.println("Error en la cadena "+ i+ " ingresada");
+				numErr++;
+			}
+		}
+		if(numErr==0)
+			this.respEstudiante=er;
+		this.respEstudiante=null;
+	}
 	@Override
 	public String toString() {
 		int tiPorEstudiante = this.numreg / 2;

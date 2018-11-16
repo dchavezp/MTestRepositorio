@@ -52,7 +52,18 @@ public class PreguntasExamen {
 			}
 		} while (ti > 0 && np > 0);
 	}
-
+	public void setPreguntas(ArrayList<String> prg) {
+		int numErr=0;
+		for(int i=0;i<prg.size();i++) {
+			if(prg.get(i).length()>50 || prg.get(i).length()==0) {
+				System.err.println("Error en la cadena "+ i+ " ingresada");
+				numErr++;
+			}
+		}
+		if(numErr==0)
+			this.preguntas=prg;
+		this.preguntas=null;
+	}
 	@Override
 	public String toString() {
 		int np = this.numP;
